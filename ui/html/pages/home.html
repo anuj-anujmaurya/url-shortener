@@ -1,0 +1,18 @@
+{{define "title"}} home {{end}}
+
+{{define "main"}}
+<form method="post">
+	<div class="form-group">
+		<label for="url_input">enter long url</label>
+		<input type="text" class="form-control" id="url_input" placeholder="enter long url">
+		<small id="emailHelp" class="form-text text-muted">enter the url you want to shorten.</small>
+	</div>
+
+	<div class="form-group">
+		<label for="short_url">shortened url</label>
+		<input type="text" disabled class="form-control" id="short_url" placeholder="your shortened url">
+	</div>
+
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{{end}}
