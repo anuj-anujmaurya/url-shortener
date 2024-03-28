@@ -36,21 +36,10 @@ func main() {
 		infoLog:  infoLog,
 	}
 
-	mux := http.NewServeMux()
-
-	// file server to server files from ui/static/ directory
-	fileServer := http.FileServer(http.Dir("./ui/static/"))
-
-	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
-
-	mux.HandleFunc("/", app.home)
-	mux.HandleFunc("/create", app.shortenHandler)
-	mux.HandleFunc("/{shortURL}", app.redirectHandler)
-
 	srv := &http.Server{
 		Addr:     ":8080",
 		ErrorLog: errorLog,
-		Handler:  mux,
+		Handler:  app.routes(),
 	}
 
 	infoLog.Println("Starting server on 8080")
