@@ -1,2 +1,3 @@
 ERROR	2024/03/28 21:20:41 main.go:48: listen tcp :80: bind: permission denied
 ERROR	2024/03/28 21:21:15 main.go:49: listen tcp: address 8080: missing port in address
+ERROR	2024/03/29 19:01:30 main.go:47: Error opening database connection: sql: unknown driver "mysql" (forgotten import?)
