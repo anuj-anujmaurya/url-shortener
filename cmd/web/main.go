@@ -35,7 +35,7 @@ func main() {
 	errorLog := log.New(errorLogFile, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
 
 	username := "user"
-	password := "******"
+	password := "****"
 	dbName := "url_map"
 	dbHost := "localhost"
 	dbPort := "3306"

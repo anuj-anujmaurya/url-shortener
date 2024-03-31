@@ -1,3 +1,480 @@
-ERROR	2024/03/28 21:20:41 main.go:48: listen tcp :80: bind: permission denied
-ERROR	2024/03/28 21:21:15 main.go:49: listen tcp: address 8080: missing port in address
-ERROR	2024/03/29 19:01:30 main.go:47: Error opening database connection: sql: unknown driver "mysql" (forgotten import?)
+ERROR	2024/03/31 22:12:44 server.go:3195: http: panic serving [::1]:33210: invalid WriteHeader code 1003
+goroutine 7 [running]:
+net/http.(*conn).serve.func1()
+	/usr/lib/go-1.18/src/net/http/server.go:1825 +0xbf
+panic({0x720280, 0xc0002f5370})
+	/usr/lib/go-1.18/src/runtime/panic.go:844 +0x258
+net/http.checkWriteHeaderCode(...)
+	/usr/lib/go-1.18/src/net/http/server.go:1111
+net/http.(*response).WriteHeader(0xc0002181c0, 0x3eb)
+	/usr/lib/go-1.18/src/net/http/server.go:1145 +0x879
+main.(*application).handleFetchError(0x0?, {0x817590, 0xc0002181c0}, {0x78a304, 0x19}, 0xc00011bb48?)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/helpers.go:27 +0x102
+main.(*application).shortenHandler(0x0?, {0x817590, 0xc0002181c0}, 0xc000096100)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/handlers.go:51 +0x1a8
+net/http.HandlerFunc.ServeHTTP(0x72?, {0x817590?, 0xc0002181c0?}, 0xc000308100?)
+	/usr/lib/go-1.18/src/net/http/server.go:2084 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x817590, 0xc0002181c0}, 0xc000096100)
+	/usr/lib/go-1.18/src/net/http/server.go:2462 +0x149
+net/http.serverHandler.ServeHTTP({0x816870?}, {0x817590, 0xc0002181c0}, 0xc000096100)
+	/usr/lib/go-1.18/src/net/http/server.go:2916 +0x43b
+net/http.(*conn).serve(0xc000108a00, {0x8177e8, 0xc00007af30})
+	/usr/lib/go-1.18/src/net/http/server.go:1966 +0x5d7
+created by net/http.(*Server).Serve
+	/usr/lib/go-1.18/src/net/http/server.go:3071 +0x4db
+ERROR	2024/03/31 22:12:44 server.go:3195: http: panic serving [::1]:43488: invalid WriteHeader code 1003
+goroutine 35 [running]:
+net/http.(*conn).serve.func1()
+	/usr/lib/go-1.18/src/net/http/server.go:1825 +0xbf
+panic({0x720280, 0xc0002f53d0})
+	/usr/lib/go-1.18/src/runtime/panic.go:844 +0x258
+net/http.checkWriteHeaderCode(...)
+	/usr/lib/go-1.18/src/net/http/server.go:1111
+net/http.(*response).WriteHeader(0xc0002182a0, 0x3eb)
+	/usr/lib/go-1.18/src/net/http/server.go:1145 +0x879
+main.(*application).handleFetchError(0x0?, {0x817590, 0xc0002182a0}, {0x78a304, 0x19}, 0xc00004bb48?)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/helpers.go:27 +0x102
+main.(*application).shortenHandler(0x0?, {0x817590, 0xc0002182a0}, 0xc000096200)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/handlers.go:51 +0x1a8
+net/http.HandlerFunc.ServeHTTP(0x720500?, {0x817590?, 0xc0002182a0?}, 0xc000308260?)
+	/usr/lib/go-1.18/src/net/http/server.go:2084 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x817590, 0xc0002182a0}, 0xc000096200)
+	/usr/lib/go-1.18/src/net/http/server.go:2462 +0x149
+net/http.serverHandler.ServeHTTP({0x816870?}, {0x817590, 0xc0002182a0}, 0xc000096200)
+	/usr/lib/go-1.18/src/net/http/server.go:2916 +0x43b
+net/http.(*conn).serve(0xc0000be000, {0x8177e8, 0xc00007af30})
+	/usr/lib/go-1.18/src/net/http/server.go:1966 +0x5d7
+created by net/http.(*Server).Serve
+	/usr/lib/go-1.18/src/net/http/server.go:3071 +0x4db
+ERROR	2024/03/31 22:13:05 server.go:3195: http: panic serving [::1]:58686: invalid WriteHeader code 1003
+goroutine 22 [running]:
+net/http.(*conn).serve.func1()
+	/usr/lib/go-1.18/src/net/http/server.go:1825 +0xbf
+panic({0x720280, 0xc0000aa090})
+	/usr/lib/go-1.18/src/runtime/panic.go:844 +0x258
+net/http.checkWriteHeaderCode(...)
+	/usr/lib/go-1.18/src/net/http/server.go:1111
+net/http.(*response).WriteHeader(0xc0000ac0e0, 0x3eb)
+	/usr/lib/go-1.18/src/net/http/server.go:1145 +0x879
+main.(*application).handleFetchError(0x0?, {0x817590, 0xc0000ac0e0}, {0x78a304, 0x19}, 0xc00004bb48?)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/helpers.go:27 +0x102
+main.(*application).shortenHandler(0x0?, {0x817590, 0xc0000ac0e0}, 0xc000204800)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/handlers.go:51 +0x1a8
+net/http.HandlerFunc.ServeHTTP(0x0?, {0x817590?, 0xc0000ac0e0?}, 0xc0000c2120?)
+	/usr/lib/go-1.18/src/net/http/server.go:2084 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x817590, 0xc0000ac0e0}, 0xc000204800)
+	/usr/lib/go-1.18/src/net/http/server.go:2462 +0x149
+net/http.serverHandler.ServeHTTP({0x816870?}, {0x817590, 0xc0000ac0e0}, 0xc000204800)
+	/usr/lib/go-1.18/src/net/http/server.go:2916 +0x43b
+net/http.(*conn).serve(0xc0002fa0a0, {0x8177e8, 0xc00007af30})
+	/usr/lib/go-1.18/src/net/http/server.go:1966 +0x5d7
+created by net/http.(*Server).Serve
+	/usr/lib/go-1.18/src/net/http/server.go:3071 +0x4db
+ERROR	2024/03/31 22:13:14 server.go:3195: http: panic serving [::1]:47450: invalid WriteHeader code 1003
+goroutine 23 [running]:
+net/http.(*conn).serve.func1()
+	/usr/lib/go-1.18/src/net/http/server.go:1825 +0xbf
+panic({0x720280, 0xc0002f5450})
+	/usr/lib/go-1.18/src/runtime/panic.go:844 +0x258
+net/http.checkWriteHeaderCode(...)
+	/usr/lib/go-1.18/src/net/http/server.go:1111
+net/http.(*response).WriteHeader(0xc000218380, 0x3eb)
+	/usr/lib/go-1.18/src/net/http/server.go:1145 +0x879
+main.(*application).handleFetchError(0x0?, {0x817590, 0xc000218380}, {0x78a304, 0x19}, 0xc000336b48?)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/helpers.go:27 +0x102
+main.(*application).shortenHandler(0x0?, {0x817590, 0xc000218380}, 0xc000204900)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/handlers.go:51 +0x1a8
+net/http.HandlerFunc.ServeHTTP(0x2?, {0x817590?, 0xc000218380?}, 0xc000308340?)
+	/usr/lib/go-1.18/src/net/http/server.go:2084 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x817590, 0xc000218380}, 0xc000204900)
+	/usr/lib/go-1.18/src/net/http/server.go:2462 +0x149
+net/http.serverHandler.ServeHTTP({0x816870?}, {0x817590, 0xc000218380}, 0xc000204900)
+	/usr/lib/go-1.18/src/net/http/server.go:2916 +0x43b
+net/http.(*conn).serve(0xc0002fa140, {0x8177e8, 0xc00007af30})
+	/usr/lib/go-1.18/src/net/http/server.go:1966 +0x5d7
+created by net/http.(*Server).Serve
+	/usr/lib/go-1.18/src/net/http/server.go:3071 +0x4db
+ERROR	2024/03/31 22:13:17 server.go:3195: http: panic serving [::1]:47462: invalid WriteHeader code 1003
+goroutine 37 [running]:
+net/http.(*conn).serve.func1()
+	/usr/lib/go-1.18/src/net/http/server.go:1825 +0xbf
+panic({0x720280, 0xc0002f54b0})
+	/usr/lib/go-1.18/src/runtime/panic.go:844 +0x258
+net/http.checkWriteHeaderCode(...)
+	/usr/lib/go-1.18/src/net/http/server.go:1111
+net/http.(*response).WriteHeader(0xc000218460, 0x3eb)
+	/usr/lib/go-1.18/src/net/http/server.go:1145 +0x879
+main.(*application).handleFetchError(0x0?, {0x817590, 0xc000218460}, {0x78a304, 0x19}, 0xc00004bb48?)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/helpers.go:27 +0x102
+main.(*application).shortenHandler(0x0?, {0x817590, 0xc000218460}, 0xc000096300)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/handlers.go:51 +0x1a8
+net/http.HandlerFunc.ServeHTTP(0x0?, {0x817590?, 0xc000218460?}, 0xc000308430?)
+	/usr/lib/go-1.18/src/net/http/server.go:2084 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x817590, 0xc000218460}, 0xc000096300)
+	/usr/lib/go-1.18/src/net/http/server.go:2462 +0x149
+net/http.serverHandler.ServeHTTP({0x816870?}, {0x817590, 0xc000218460}, 0xc000096300)
+	/usr/lib/go-1.18/src/net/http/server.go:2916 +0x43b
+net/http.(*conn).serve(0xc0000be0a0, {0x8177e8, 0xc00007af30})
+	/usr/lib/go-1.18/src/net/http/server.go:1966 +0x5d7
+created by net/http.(*Server).Serve
+	/usr/lib/go-1.18/src/net/http/server.go:3071 +0x4db
+ERROR	2024/03/31 22:14:05 server.go:3195: http: panic serving [::1]:34164: invalid WriteHeader code 1003
+goroutine 38 [running]:
+net/http.(*conn).serve.func1()
+	/usr/lib/go-1.18/src/net/http/server.go:1825 +0xbf
+panic({0x720280, 0xc00026e270})
+	/usr/lib/go-1.18/src/runtime/panic.go:844 +0x258
+net/http.checkWriteHeaderCode(...)
+	/usr/lib/go-1.18/src/net/http/server.go:1111
+net/http.(*response).WriteHeader(0xc0001101c0, 0x3eb)
+	/usr/lib/go-1.18/src/net/http/server.go:1145 +0x879
+main.(*application).handleFetchError(0x0?, {0x817590, 0xc0001101c0}, {0x78a304, 0x19}, 0xc0000b1b48?)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/helpers.go:27 +0x102
+main.(*application).shortenHandler(0x0?, {0x817590, 0xc0001101c0}, 0xc0001a2600)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/handlers.go:51 +0x1a8
+net/http.HandlerFunc.ServeHTTP(0x72?, {0x817590?, 0xc0001101c0?}, 0xc0000f6430?)
+	/usr/lib/go-1.18/src/net/http/server.go:2084 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x817590, 0xc0001101c0}, 0xc0001a2600)
+	/usr/lib/go-1.18/src/net/http/server.go:2462 +0x149
+net/http.serverHandler.ServeHTTP({0x816870?}, {0x817590, 0xc0001101c0}, 0xc0001a2600)
+	/usr/lib/go-1.18/src/net/http/server.go:2916 +0x43b
+net/http.(*conn).serve(0xc0001da000, {0x8177e8, 0xc00009af30})
+	/usr/lib/go-1.18/src/net/http/server.go:1966 +0x5d7
+created by net/http.(*Server).Serve
+	/usr/lib/go-1.18/src/net/http/server.go:3071 +0x4db
+ERROR	2024/03/31 22:14:05 server.go:3195: http: panic serving [::1]:34162: invalid WriteHeader code 1003
+goroutine 20 [running]:
+net/http.(*conn).serve.func1()
+	/usr/lib/go-1.18/src/net/http/server.go:1825 +0xbf
+panic({0x720280, 0xc00018e230})
+	/usr/lib/go-1.18/src/runtime/panic.go:844 +0x258
+net/http.checkWriteHeaderCode(...)
+	/usr/lib/go-1.18/src/net/http/server.go:1111
+net/http.(*response).WriteHeader(0xc0001b62a0, 0x3eb)
+	/usr/lib/go-1.18/src/net/http/server.go:1145 +0x879
+main.(*application).handleFetchError(0x0?, {0x817590, 0xc0001b62a0}, {0x78a304, 0x19}, 0xc0000c7b48?)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/helpers.go:27 +0x102
+main.(*application).shortenHandler(0x0?, {0x817590, 0xc0001b62a0}, 0xc00010e500)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/handlers.go:51 +0x1a8
+net/http.HandlerFunc.ServeHTTP(0x72?, {0x817590?, 0xc0001b62a0?}, 0xc0001e0020?)
+	/usr/lib/go-1.18/src/net/http/server.go:2084 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x817590, 0xc0001b62a0}, 0xc00010e500)
+	/usr/lib/go-1.18/src/net/http/server.go:2462 +0x149
+net/http.serverHandler.ServeHTTP({0x816870?}, {0x817590, 0xc0001b62a0}, 0xc00010e500)
+	/usr/lib/go-1.18/src/net/http/server.go:2916 +0x43b
+net/http.(*conn).serve(0xc0000aea00, {0x8177e8, 0xc00009af30})
+	/usr/lib/go-1.18/src/net/http/server.go:1966 +0x5d7
+created by net/http.(*Server).Serve
+	/usr/lib/go-1.18/src/net/http/server.go:3071 +0x4db
+ERROR	2024/03/31 22:14:05 server.go:3195: http: panic serving [::1]:55050: invalid WriteHeader code 1003
+goroutine 23 [running]:
+net/http.(*conn).serve.func1()
+	/usr/lib/go-1.18/src/net/http/server.go:1825 +0xbf
+panic({0x720280, 0xc00026e2e0})
+	/usr/lib/go-1.18/src/runtime/panic.go:844 +0x258
+net/http.checkWriteHeaderCode(...)
+	/usr/lib/go-1.18/src/net/http/server.go:1111
+net/http.(*response).WriteHeader(0xc0001102a0, 0x3eb)
+	/usr/lib/go-1.18/src/net/http/server.go:1145 +0x879
+main.(*application).handleFetchError(0x0?, {0x817590, 0xc0001102a0}, {0x78a304, 0x19}, 0xc00004ab48?)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/helpers.go:27 +0x102
+main.(*application).shortenHandler(0x0?, {0x817590, 0xc0001102a0}, 0xc00010e600)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/handlers.go:51 +0x1a8
+net/http.HandlerFunc.ServeHTTP(0x0?, {0x817590?, 0xc0001102a0?}, 0xc0000f6600?)
+	/usr/lib/go-1.18/src/net/http/server.go:2084 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x817590, 0xc0001102a0}, 0xc00010e600)
+	/usr/lib/go-1.18/src/net/http/server.go:2462 +0x149
+net/http.serverHandler.ServeHTTP({0x816870?}, {0x817590, 0xc0001102a0}, 0xc00010e600)
+	/usr/lib/go-1.18/src/net/http/server.go:2916 +0x43b
+net/http.(*conn).serve(0xc0000aeb40, {0x8177e8, 0xc00009af30})
+	/usr/lib/go-1.18/src/net/http/server.go:1966 +0x5d7
+created by net/http.(*Server).Serve
+	/usr/lib/go-1.18/src/net/http/server.go:3071 +0x4db
+ERROR	2024/03/31 22:14:09 server.go:3195: http: panic serving [::1]:55060: invalid WriteHeader code 1003
+goroutine 42 [running]:
+net/http.(*conn).serve.func1()
+	/usr/lib/go-1.18/src/net/http/server.go:1825 +0xbf
+panic({0x720280, 0xc0000120e0})
+	/usr/lib/go-1.18/src/runtime/panic.go:844 +0x258
+net/http.checkWriteHeaderCode(...)
+	/usr/lib/go-1.18/src/net/http/server.go:1111
+net/http.(*response).WriteHeader(0xc00028e000, 0x3eb)
+	/usr/lib/go-1.18/src/net/http/server.go:1145 +0x879
+main.(*application).handleFetchError(0x0?, {0x817590, 0xc00028e000}, {0x78a304, 0x19}, 0xc00004fb48?)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/helpers.go:27 +0x102
+main.(*application).shortenHandler(0x0?, {0x817590, 0xc00028e000}, 0xc000282100)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/handlers.go:51 +0x1a8
+net/http.HandlerFunc.ServeHTTP(0x720500?, {0x817590?, 0xc00028e000?}, 0xc000288010?)
+	/usr/lib/go-1.18/src/net/http/server.go:2084 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x817590, 0xc00028e000}, 0xc000282100)
+	/usr/lib/go-1.18/src/net/http/server.go:2462 +0x149
+net/http.serverHandler.ServeHTTP({0x816870?}, {0x817590, 0xc00028e000}, 0xc000282100)
+	/usr/lib/go-1.18/src/net/http/server.go:2916 +0x43b
+net/http.(*conn).serve(0xc0001da0a0, {0x8177e8, 0xc00009af30})
+	/usr/lib/go-1.18/src/net/http/server.go:1966 +0x5d7
+created by net/http.(*Server).Serve
+	/usr/lib/go-1.18/src/net/http/server.go:3071 +0x4db
+ERROR	2024/03/31 22:14:11 server.go:3195: http: panic serving [::1]:55062: invalid WriteHeader code 1003
+goroutine 25 [running]:
+net/http.(*conn).serve.func1()
+	/usr/lib/go-1.18/src/net/http/server.go:1825 +0xbf
+panic({0x720280, 0xc000012140})
+	/usr/lib/go-1.18/src/runtime/panic.go:844 +0x258
+net/http.checkWriteHeaderCode(...)
+	/usr/lib/go-1.18/src/net/http/server.go:1111
+net/http.(*response).WriteHeader(0xc00028e0e0, 0x3eb)
+	/usr/lib/go-1.18/src/net/http/server.go:1145 +0x879
+main.(*application).handleFetchError(0x0?, {0x817590, 0xc00028e0e0}, {0x78a304, 0x19}, 0xc00004ab48?)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/helpers.go:27 +0x102
+main.(*application).shortenHandler(0x0?, {0x817590, 0xc00028e0e0}, 0xc00010e700)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/handlers.go:51 +0x1a8
+net/http.HandlerFunc.ServeHTTP(0x0?, {0x817590?, 0xc00028e0e0?}, 0xc000288220?)
+	/usr/lib/go-1.18/src/net/http/server.go:2084 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x817590, 0xc00028e0e0}, 0xc00010e700)
+	/usr/lib/go-1.18/src/net/http/server.go:2462 +0x149
+net/http.serverHandler.ServeHTTP({0x816870?}, {0x817590, 0xc00028e0e0}, 0xc00010e700)
+	/usr/lib/go-1.18/src/net/http/server.go:2916 +0x43b
+net/http.(*conn).serve(0xc0000aebe0, {0x8177e8, 0xc00009af30})
+	/usr/lib/go-1.18/src/net/http/server.go:1966 +0x5d7
+created by net/http.(*Server).Serve
+	/usr/lib/go-1.18/src/net/http/server.go:3071 +0x4db
+ERROR	2024/03/31 22:16:39 server.go:3195: http: panic serving [::1]:37332: invalid WriteHeader code 1003
+goroutine 20 [running]:
+net/http.(*conn).serve.func1()
+	/usr/lib/go-1.18/src/net/http/server.go:1825 +0xbf
+panic({0x720280, 0xc0002180b0})
+	/usr/lib/go-1.18/src/runtime/panic.go:844 +0x258
+net/http.checkWriteHeaderCode(...)
+	/usr/lib/go-1.18/src/net/http/server.go:1111
+net/http.(*response).WriteHeader(0xc00021a0e0, 0x3eb)
+	/usr/lib/go-1.18/src/net/http/server.go:1145 +0x879
+main.(*application).handleFetchError(0x0?, {0x817590, 0xc00021a0e0}, {0x78a304, 0x19}, 0xc0000c7b48?)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/helpers.go:27 +0x102
+main.(*application).shortenHandler(0x0?, {0x817590, 0xc00021a0e0}, 0xc000304100)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/handlers.go:51 +0x1a8
+net/http.HandlerFunc.ServeHTTP(0x72?, {0x817590?, 0xc00021a0e0?}, 0xc00023e100?)
+	/usr/lib/go-1.18/src/net/http/server.go:2084 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x817590, 0xc00021a0e0}, 0xc000304100)
+	/usr/lib/go-1.18/src/net/http/server.go:2462 +0x149
+net/http.serverHandler.ServeHTTP({0x816870?}, {0x817590, 0xc00021a0e0}, 0xc000304100)
+	/usr/lib/go-1.18/src/net/http/server.go:2916 +0x43b
+net/http.(*conn).serve(0xc0000aeb40, {0x8177e8, 0xc00009af30})
+	/usr/lib/go-1.18/src/net/http/server.go:1966 +0x5d7
+created by net/http.(*Server).Serve
+	/usr/lib/go-1.18/src/net/http/server.go:3071 +0x4db
+ERROR	2024/03/31 22:16:39 server.go:3195: http: panic serving [::1]:37338: invalid WriteHeader code 1003
+goroutine 25 [running]:
+net/http.(*conn).serve.func1()
+	/usr/lib/go-1.18/src/net/http/server.go:1825 +0xbf
+panic({0x720280, 0xc000318080})
+	/usr/lib/go-1.18/src/runtime/panic.go:844 +0x258
+net/http.checkWriteHeaderCode(...)
+	/usr/lib/go-1.18/src/net/http/server.go:1111
+net/http.(*response).WriteHeader(0xc00031a0e0, 0x3eb)
+	/usr/lib/go-1.18/src/net/http/server.go:1145 +0x879
+main.(*application).handleFetchError(0x0?, {0x817590, 0xc00031a0e0}, {0x78a304, 0x19}, 0xc0000b1b48?)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/helpers.go:27 +0x102
+main.(*application).shortenHandler(0x0?, {0x817590, 0xc00031a0e0}, 0xc000204200)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/handlers.go:51 +0x1a8
+net/http.HandlerFunc.ServeHTTP(0x72?, {0x817590?, 0xc00031a0e0?}, 0xc00032c030?)
+	/usr/lib/go-1.18/src/net/http/server.go:2084 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x817590, 0xc00031a0e0}, 0xc000204200)
+	/usr/lib/go-1.18/src/net/http/server.go:2462 +0x149
+net/http.serverHandler.ServeHTTP({0x816870?}, {0x817590, 0xc00031a0e0}, 0xc000204200)
+	/usr/lib/go-1.18/src/net/http/server.go:2916 +0x43b
+net/http.(*conn).serve(0xc0000aebe0, {0x8177e8, 0xc00009af30})
+	/usr/lib/go-1.18/src/net/http/server.go:1966 +0x5d7
+created by net/http.(*Server).Serve
+	/usr/lib/go-1.18/src/net/http/server.go:3071 +0x4db
+ERROR	2024/03/31 22:16:39 server.go:3195: http: panic serving [::1]:37352: invalid WriteHeader code 1003
+goroutine 27 [running]:
+net/http.(*conn).serve.func1()
+	/usr/lib/go-1.18/src/net/http/server.go:1825 +0xbf
+panic({0x720280, 0xc000218110})
+	/usr/lib/go-1.18/src/runtime/panic.go:844 +0x258
+net/http.checkWriteHeaderCode(...)
+	/usr/lib/go-1.18/src/net/http/server.go:1111
+net/http.(*response).WriteHeader(0xc00021a1c0, 0x3eb)
+	/usr/lib/go-1.18/src/net/http/server.go:1145 +0x879
+main.(*application).handleFetchError(0x0?, {0x817590, 0xc00021a1c0}, {0x78a304, 0x19}, 0xc00004bb48?)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/helpers.go:27 +0x102
+main.(*application).shortenHandler(0x0?, {0x817590, 0xc00021a1c0}, 0xc00010e900)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/handlers.go:51 +0x1a8
+net/http.HandlerFunc.ServeHTTP(0x72887556cf50?, {0x817590?, 0xc00021a1c0?}, 0xc00023e260?)
+	/usr/lib/go-1.18/src/net/http/server.go:2084 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x817590, 0xc00021a1c0}, 0xc00010e900)
+	/usr/lib/go-1.18/src/net/http/server.go:2462 +0x149
+net/http.serverHandler.ServeHTTP({0x816870?}, {0x817590, 0xc00021a1c0}, 0xc00010e900)
+	/usr/lib/go-1.18/src/net/http/server.go:2916 +0x43b
+net/http.(*conn).serve(0xc0000aed20, {0x8177e8, 0xc00009af30})
+	/usr/lib/go-1.18/src/net/http/server.go:1966 +0x5d7
+created by net/http.(*Server).Serve
+	/usr/lib/go-1.18/src/net/http/server.go:3071 +0x4db
+ERROR	2024/03/31 22:17:29 server.go:3195: http: panic serving [::1]:38866: invalid WriteHeader code 1003
+goroutine 20 [running]:
+net/http.(*conn).serve.func1()
+	/usr/lib/go-1.18/src/net/http/server.go:1825 +0xbf
+panic({0x720280, 0xc00018e230})
+	/usr/lib/go-1.18/src/runtime/panic.go:844 +0x258
+net/http.checkWriteHeaderCode(...)
+	/usr/lib/go-1.18/src/net/http/server.go:1111
+net/http.(*response).WriteHeader(0xc0001b40e0, 0x3eb)
+	/usr/lib/go-1.18/src/net/http/server.go:1145 +0x879
+main.(*application).handleFetchError(0x0?, {0x8175d0, 0xc0001b40e0}, {0x78a316, 0x19}, 0xc0000c79c0?)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/helpers.go:27 +0x102
+main.(*application).shortenHandler(0x0?, {0x8175d0, 0xc0001b40e0}, 0xc000074500)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/handlers.go:54 +0x258
+net/http.HandlerFunc.ServeHTTP(0x72?, {0x8175d0?, 0xc0001b40e0?}, 0xc0001e80f0?)
+	/usr/lib/go-1.18/src/net/http/server.go:2084 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x8175d0, 0xc0001b40e0}, 0xc000074500)
+	/usr/lib/go-1.18/src/net/http/server.go:2462 +0x149
+net/http.serverHandler.ServeHTTP({0x8168b0?}, {0x8175d0, 0xc0001b40e0}, 0xc000074500)
+	/usr/lib/go-1.18/src/net/http/server.go:2916 +0x43b
+net/http.(*conn).serve(0xc0000b2a00, {0x817828, 0xc00009af30})
+	/usr/lib/go-1.18/src/net/http/server.go:1966 +0x5d7
+created by net/http.(*Server).Serve
+	/usr/lib/go-1.18/src/net/http/server.go:3071 +0x4db
+ERROR	2024/03/31 22:17:29 server.go:3195: http: panic serving [::1]:38880: invalid WriteHeader code 1003
+goroutine 21 [running]:
+net/http.(*conn).serve.func1()
+	/usr/lib/go-1.18/src/net/http/server.go:1825 +0xbf
+panic({0x720280, 0xc0002c7330})
+	/usr/lib/go-1.18/src/runtime/panic.go:844 +0x258
+net/http.checkWriteHeaderCode(...)
+	/usr/lib/go-1.18/src/net/http/server.go:1111
+net/http.(*response).WriteHeader(0xc00007c0e0, 0x3eb)
+	/usr/lib/go-1.18/src/net/http/server.go:1145 +0x879
+main.(*application).handleFetchError(0x0?, {0x8175d0, 0xc00007c0e0}, {0x78a316, 0x19}, 0xc0000bd9c0?)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/helpers.go:27 +0x102
+main.(*application).shortenHandler(0x0?, {0x8175d0, 0xc00007c0e0}, 0xc0001a2200)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/handlers.go:54 +0x258
+net/http.HandlerFunc.ServeHTTP(0x72?, {0x8175d0?, 0xc00007c0e0?}, 0xc0002d20e0?)
+	/usr/lib/go-1.18/src/net/http/server.go:2084 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x8175d0, 0xc00007c0e0}, 0xc0001a2200)
+	/usr/lib/go-1.18/src/net/http/server.go:2462 +0x149
+net/http.serverHandler.ServeHTTP({0x8168b0?}, {0x8175d0, 0xc00007c0e0}, 0xc0001a2200)
+	/usr/lib/go-1.18/src/net/http/server.go:2916 +0x43b
+net/http.(*conn).serve(0xc0000b2aa0, {0x817828, 0xc00009af30})
+	/usr/lib/go-1.18/src/net/http/server.go:1966 +0x5d7
+created by net/http.(*Server).Serve
+	/usr/lib/go-1.18/src/net/http/server.go:3071 +0x4db
+ERROR	2024/03/31 22:17:29 server.go:3195: http: panic serving [::1]:38890: invalid WriteHeader code 1003
+goroutine 39 [running]:
+net/http.(*conn).serve.func1()
+	/usr/lib/go-1.18/src/net/http/server.go:1825 +0xbf
+panic({0x720280, 0xc00018e2a0})
+	/usr/lib/go-1.18/src/runtime/panic.go:844 +0x258
+net/http.checkWriteHeaderCode(...)
+	/usr/lib/go-1.18/src/net/http/server.go:1111
+net/http.(*response).WriteHeader(0xc0001b41c0, 0x3eb)
+	/usr/lib/go-1.18/src/net/http/server.go:1145 +0x879
+main.(*application).handleFetchError(0x0?, {0x8175d0, 0xc0001b41c0}, {0x78a316, 0x19}, 0x800?)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/helpers.go:27 +0x102
+main.(*application).shortenHandler(0x0?, {0x8175d0, 0xc0001b41c0}, 0xc0001a2300)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/handlers.go:54 +0x258
+net/http.HandlerFunc.ServeHTTP(0x0?, {0x8175d0?, 0xc0001b41c0?}, 0xc0001e8260?)
+	/usr/lib/go-1.18/src/net/http/server.go:2084 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x8175d0, 0xc0001b41c0}, 0xc0001a2300)
+	/usr/lib/go-1.18/src/net/http/server.go:2462 +0x149
+net/http.serverHandler.ServeHTTP({0x8168b0?}, {0x8175d0, 0xc0001b41c0}, 0xc0001a2300)
+	/usr/lib/go-1.18/src/net/http/server.go:2916 +0x43b
+net/http.(*conn).serve(0xc0001e40a0, {0x817828, 0xc00009af30})
+	/usr/lib/go-1.18/src/net/http/server.go:1966 +0x5d7
+created by net/http.(*Server).Serve
+	/usr/lib/go-1.18/src/net/http/server.go:3071 +0x4db
+ERROR	2024/03/31 22:17:39 server.go:3195: http: panic serving [::1]:45330: invalid WriteHeader code 1003
+goroutine 7 [running]:
+net/http.(*conn).serve.func1()
+	/usr/lib/go-1.18/src/net/http/server.go:1825 +0xbf
+panic({0x720280, 0xc00018e300})
+	/usr/lib/go-1.18/src/runtime/panic.go:844 +0x258
+net/http.checkWriteHeaderCode(...)
+	/usr/lib/go-1.18/src/net/http/server.go:1111
+net/http.(*response).WriteHeader(0xc0001b42a0, 0x3eb)
+	/usr/lib/go-1.18/src/net/http/server.go:1145 +0x879
+main.(*application).handleFetchError(0x0?, {0x8175d0, 0xc0001b42a0}, {0x78a316, 0x19}, 0x800?)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/helpers.go:27 +0x102
+main.(*application).shortenHandler(0x0?, {0x8175d0, 0xc0001b42a0}, 0xc000074600)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/handlers.go:54 +0x258
+net/http.HandlerFunc.ServeHTTP(0x0?, {0x8175d0?, 0xc0001b42a0?}, 0xc0001e82f0?)
+	/usr/lib/go-1.18/src/net/http/server.go:2084 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x8175d0, 0xc0001b42a0}, 0xc000074600)
+	/usr/lib/go-1.18/src/net/http/server.go:2462 +0x149
+net/http.serverHandler.ServeHTTP({0x8168b0?}, {0x8175d0, 0xc0001b42a0}, 0xc000074600)
+	/usr/lib/go-1.18/src/net/http/server.go:2916 +0x43b
+net/http.(*conn).serve(0xc0002d00a0, {0x817828, 0xc00009af30})
+	/usr/lib/go-1.18/src/net/http/server.go:1966 +0x5d7
+created by net/http.(*Server).Serve
+	/usr/lib/go-1.18/src/net/http/server.go:3071 +0x4db
+ERROR	2024/03/31 22:17:56 server.go:3195: http: panic serving [::1]:39722: invalid WriteHeader code 1003
+goroutine 7 [running]:
+net/http.(*conn).serve.func1()
+	/usr/lib/go-1.18/src/net/http/server.go:1825 +0xbf
+panic({0x720280, 0xc000098050})
+	/usr/lib/go-1.18/src/runtime/panic.go:844 +0x258
+net/http.checkWriteHeaderCode(...)
+	/usr/lib/go-1.18/src/net/http/server.go:1111
+net/http.(*response).WriteHeader(0xc0000bc000, 0x3eb)
+	/usr/lib/go-1.18/src/net/http/server.go:1145 +0x879
+main.(*application).handleFetchError(0x0?, {0x8175d0, 0xc0000bc000}, {0x78a316, 0x19}, 0x800?)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/helpers.go:27 +0x102
+main.(*application).shortenHandler(0x0?, {0x8175d0, 0xc0000bc000}, 0xc0000aa000)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/handlers.go:54 +0x258
+net/http.HandlerFunc.ServeHTTP(0x720500?, {0x8175d0?, 0xc0000bc000?}, 0xc0000b0120?)
+	/usr/lib/go-1.18/src/net/http/server.go:2084 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x8175d0, 0xc0000bc000}, 0xc0000aa000)
+	/usr/lib/go-1.18/src/net/http/server.go:2462 +0x149
+net/http.serverHandler.ServeHTTP({0x8168b0?}, {0x8175d0, 0xc0000bc000}, 0xc0000aa000)
+	/usr/lib/go-1.18/src/net/http/server.go:2916 +0x43b
+net/http.(*conn).serve(0xc00010ab40, {0x817828, 0xc00007af30})
+	/usr/lib/go-1.18/src/net/http/server.go:1966 +0x5d7
+created by net/http.(*Server).Serve
+	/usr/lib/go-1.18/src/net/http/server.go:3071 +0x4db
+ERROR	2024/03/31 22:17:58 server.go:3195: http: panic serving [::1]:39736: invalid WriteHeader code 1003
+goroutine 34 [running]:
+net/http.(*conn).serve.func1()
+	/usr/lib/go-1.18/src/net/http/server.go:1825 +0xbf
+panic({0x720280, 0xc0000980b0})
+	/usr/lib/go-1.18/src/runtime/panic.go:844 +0x258
+net/http.checkWriteHeaderCode(...)
+	/usr/lib/go-1.18/src/net/http/server.go:1111
+net/http.(*response).WriteHeader(0xc0000bc0e0, 0x3eb)
+	/usr/lib/go-1.18/src/net/http/server.go:1145 +0x879
+main.(*application).handleFetchError(0x0?, {0x8175d0, 0xc0000bc0e0}, {0x78a316, 0x19}, 0x800?)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/helpers.go:27 +0x102
+main.(*application).shortenHandler(0x0?, {0x8175d0, 0xc0000bc0e0}, 0xc0001a0000)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/handlers.go:54 +0x258
+net/http.HandlerFunc.ServeHTTP(0x720500?, {0x8175d0?, 0xc0000bc0e0?}, 0xc0000b0260?)
+	/usr/lib/go-1.18/src/net/http/server.go:2084 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x8175d0, 0xc0000bc0e0}, 0xc0001a0000)
+	/usr/lib/go-1.18/src/net/http/server.go:2462 +0x149
+net/http.serverHandler.ServeHTTP({0x8168b0?}, {0x8175d0, 0xc0000bc0e0}, 0xc0001a0000)
+	/usr/lib/go-1.18/src/net/http/server.go:2916 +0x43b
+net/http.(*conn).serve(0xc000188000, {0x817828, 0xc00007af30})
+	/usr/lib/go-1.18/src/net/http/server.go:1966 +0x5d7
+created by net/http.(*Server).Serve
+	/usr/lib/go-1.18/src/net/http/server.go:3071 +0x4db
+ERROR	2024/03/31 22:18:03 server.go:3195: http: panic serving [::1]:51060: invalid WriteHeader code 1003
+goroutine 35 [running]:
+net/http.(*conn).serve.func1()
+	/usr/lib/go-1.18/src/net/http/server.go:1825 +0xbf
+panic({0x720280, 0xc000098110})
+	/usr/lib/go-1.18/src/runtime/panic.go:844 +0x258
+net/http.checkWriteHeaderCode(...)
+	/usr/lib/go-1.18/src/net/http/server.go:1111
+net/http.(*response).WriteHeader(0xc0000bc1c0, 0x3eb)
+	/usr/lib/go-1.18/src/net/http/server.go:1145 +0x879
+main.(*application).handleFetchError(0x0?, {0x8175d0, 0xc0000bc1c0}, {0x78a316, 0x19}, 0x800?)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/helpers.go:27 +0x102
+main.(*application).shortenHandler(0x0?, {0x8175d0, 0xc0000bc1c0}, 0xc0001a0100)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/handlers.go:54 +0x258
+net/http.HandlerFunc.ServeHTTP(0xc000193a88?, {0x8175d0?, 0xc0000bc1c0?}, 0xc0000b0370?)
+	/usr/lib/go-1.18/src/net/http/server.go:2084 +0x2f
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x8175d0, 0xc0000bc1c0}, 0xc0001a0100)
+	/usr/lib/go-1.18/src/net/http/server.go:2462 +0x149
+net/http.serverHandler.ServeHTTP({0x8168b0?}, {0x8175d0, 0xc0000bc1c0}, 0xc0001a0100)
+	/usr/lib/go-1.18/src/net/http/server.go:2916 +0x43b
+net/http.(*conn).serve(0xc0001880a0, {0x817828, 0xc00007af30})
+	/usr/lib/go-1.18/src/net/http/server.go:1966 +0x5d7
+created by net/http.(*Server).Serve
+	/usr/lib/go-1.18/src/net/http/server.go:3071 +0x4db
