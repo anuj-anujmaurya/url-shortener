@@ -22,9 +22,9 @@ func (app *application) notFound(w http.ResponseWriter) {
 }
 
 // handle fetch error (this function isn't working as expected)
-func (app *application) handleFetchError(w http.ResponseWriter, message string, statusCode int) {
+func (app *application) handleFetchError(w http.ResponseWriter, message string, code, statusCode int) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(statusCode)
-	response := map[string]string{"error": message}
+	response := map[string]any{"error": message, "code": code}
 	json.NewEncoder(w).Encode(response)
 }

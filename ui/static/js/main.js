@@ -1,21 +1,21 @@
 document.addEventListener("DOMContentLoaded", function () {
 	let submit_form = document.getElementById("get_short_url");
 	if (submit_form) {
-		document.addEventListener("click", function () {
+		submit_form.addEventListener("click", function () {
 			let long_url = document.getElementById('url_input').value;
 
-			let data = { 'create_short_url': true, 'long_url' : long_url }
-
+			let data = { CreateShortURL: true, LongURL: long_url }
+			console.log(data);
 			fetch('/create', {
-				method : 'POST',
-				headers : {
-					'Accept' : 'application/json',
-					'Content-Type' : 'application/json'
+				method: 'POST',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
 				},
-				body : data
+				body: JSON.stringify(data)
 			})
-			.then(response => response.json())
-			.then(data => console.log(data))
+				.then(response => response.json())
+				.then(data => console.log(data))
 		});
 	}
 });

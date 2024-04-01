@@ -1,11 +1,14 @@
 package main
 
 import (
+	"database/sql"
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"strings"
 	"text/template"
 	"unicode/utf8"
+	"url_shortener/internal/models"
 )
 
 // home
@@ -33,33 +36,52 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+//
+type ShortURLRequest struct {
+	CreateShortURL bool   `json:"CreateShortURL"`
+	LongURL        string `json:"LongURL"`
+}
+
 // create url shortener
 func (app *application) shortenHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
-		app.handleFetchError(w, "Method Not Allowed", http.StatusMethodNotAllowed)
+		app.handleFetchError(w, "Method Not Allowed", 1000, http.StatusMethodNotAllowed)
 		return
 	}
 
-	err := r.ParseForm()
-	fmt.Println("hello")
+	var requestBody ShortURLRequest
+	err := json.NewDecoder(r.Body).Decode(&requestBody)
 	if err != nil {
-		app.handleFetchError(w, "Invalid Request", http.StatusBadRequest)
+		app.handleFetchError(w, "Bad request/empty url", 1001, http.StatusBadRequest)
 		return
 	}
 
-	long_url := r.PostForm.Get("long_url")
-
-	if strings.TrimSpace(long_url) == "" {
-		app.handleFetchError(w, "This field can't be empty", http.StatusUnprocessableEntity)
+	if strings.TrimSpace(requestBody.LongURL) == "" {
+		app.handleFetchError(w, "This field can't be empty", 1002, http.StatusUnprocessableEntity)
 		return
-	} else if utf8.RuneCountInString(long_url) > 400 {
-		app.handleFetchError(w, "URL too long", http.StatusUnprocessableEntity)
+	} else if utf8.RuneCountInString(requestBody.LongURL) > 400 {
+		app.handleFetchError(w, "URL too long", 1003, http.StatusUnprocessableEntity)
 		return
 	}
-	fmt.Println("hello again")
 
+	urlModel := models.URLModel{DB: &sql.DB{}}
 
 	// check for existence in db
+	shortURL, err := urlModel.CheckIfExists(requestBody.LongURL)
+
+	if err != nil {
+		app.handleFetchError(w, "Something went wrong", 1004, http.StatusInternalServerError)
+	} else {
+		fmt.Println(shortURL)
+		return
+	}
+
+	if shortURL != "" {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(200)
+		json.NewEncoder(w).Encode(map[string]string{"shortURL": shortURL})
+		return
+	}
 
 	// create the short url
 
