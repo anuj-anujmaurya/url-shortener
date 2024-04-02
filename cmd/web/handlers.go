@@ -1,14 +1,11 @@
 package main
 
 import (
-	"database/sql"
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"strings"
 	"text/template"
 	"unicode/utf8"
-	"url_shortener/internal/models"
 )
 
 // home
@@ -42,6 +39,18 @@ type ShortURLRequest struct {
 	LongURL        string `json:"LongURL"`
 }
 
+const base62Digits = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+func convertToBase62(number int64) string {
+	base62 := ""
+	for number > 0 {
+		remainder := number % 62
+		base62 = string(base62Digits[remainder]) + base62
+		number /= 62
+	}
+	return base62
+}
+
 // create url shortener
 func (app *application) shortenHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
@@ -64,30 +73,41 @@ func (app *application) shortenHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	urlModel := models.URLModel{DB: &sql.DB{}}
-
 	// check for existence in db
-	shortURL, err := urlModel.CheckIfExists(requestBody.LongURL)
+	shortURL, err := app.URLModel.CheckIfExists(requestBody.LongURL)
 
 	if err != nil {
 		app.handleFetchError(w, "Something went wrong", 1004, http.StatusInternalServerError)
-	} else {
-		fmt.Println(shortURL)
-		return
 	}
 
 	if shortURL != "" {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(200)
-		json.NewEncoder(w).Encode(map[string]string{"shortURL": shortURL})
+		json.NewEncoder(w).Encode(map[string]any{"success": true, "shortURL": shortURL})
 		return
 	}
 
 	// create the short url
+	id, err := app.URLModel.Insert(requestBody.LongURL)
+
+	if err != nil {
+		app.handleFetchError(w, "Something went wrong", 1005, http.StatusInternalServerError)
+		return
+	}
+
+	// convert the id into base 62 encoded
+	shortURL = convertToBase62(id)
+
+	// update the entry
+	err = app.URLModel.UpdateShortURL(id, shortURL)
+	if err != nil {
+		app.handleFetchError(w, "Something went wrong", 1006, http.StatusInternalServerError)
+	}
 
 	// return the short url
-
-	w.Write([]byte("will create short url"))
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(200)
+	json.NewEncoder(w).Encode(map[string]any{"success": true, "short_url": shortURL})
 }
 
 func (app *application) redirectHandler(w http.ResponseWriter, r *http.Request) {

@@ -23,6 +23,10 @@ func (m *URLModel) CheckIfExists(longURL string) (shortURL string, err error) {
 	stmt := `SELECT short_url FROM url_map WHERE long_url = ?`
 	row := m.DB.QueryRow(stmt, longURL)
 
+	if err != nil {
+		return "", err
+	}
+
 	var short_url string
 
 	err = row.Scan(&short_url)
@@ -40,7 +44,7 @@ func (m *URLModel) CheckIfExists(longURL string) (shortURL string, err error) {
 
 // insert the long url, return id
 func (m *URLModel) Insert(longURL string) (insertID int64, err error) {
-	stmt := `INSERT INTO url_map (longURL, created) VALUES (?, UTC_TIMESTAMP())`
+	stmt := `INSERT INTO url_map (long_url, created) VALUES (?, UTC_TIMESTAMP())`
 	result, err := m.DB.Exec(stmt, longURL)
 
 	if err != nil {
@@ -52,8 +56,8 @@ func (m *URLModel) Insert(longURL string) (insertID int64, err error) {
 	if err != nil {
 		return 0, err
 	}
-	return int64(id), nil
 
+	return int64(id), nil
 }
 
 // update with id,

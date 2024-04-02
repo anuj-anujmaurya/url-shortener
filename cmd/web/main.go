@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"url_shortener/internal/models"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -14,6 +15,7 @@ import (
 type application struct {
 	errorLog *log.Logger
 	infoLog  *log.Logger
+	URLModel *models.URLModel
 }
 
 func main() {
@@ -35,8 +37,8 @@ func main() {
 	errorLog := log.New(errorLogFile, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
 
 	username := "user"
-	password := ""
-	dbName := "url_map"
+	password := "******"
+	dbName := "url_shortener"
 	dbHost := "localhost"
 	dbPort := "3306"
 
@@ -56,6 +58,7 @@ func main() {
 	app := &application{
 		errorLog: errorLog,
 		infoLog:  infoLog,
+		URLModel: &models.URLModel{DB: db},
 	}
 
 	srv := &http.Server{
