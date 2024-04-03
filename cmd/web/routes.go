@@ -10,7 +10,7 @@ func (app *application) routes() *http.ServeMux {
 
 	mux.HandleFunc("/", app.home)
 	mux.HandleFunc("/create", app.shortenHandler)
-	mux.HandleFunc("/{shortURL}", app.redirectHandler)
+	mux.HandleFunc("/:shortURL", app.redirectHandler)
 
 	return mux
 }

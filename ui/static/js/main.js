@@ -14,7 +14,17 @@ document.addEventListener("DOMContentLoaded", function () {
 				},
 				body: JSON.stringify(data)
 			})
-				.then(response => response.json())
+				.then(response => {
+					if(response.error) {
+						// show the error
+					}
+
+					if(response.success) {
+						// show the short_url in the box (also allow user to copy)
+					}
+					
+					response.json()
+				})
 				.then(data => console.log(data))
 		});
 	}

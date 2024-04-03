@@ -111,8 +111,6 @@ func (app *application) shortenHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) redirectHandler(w http.ResponseWriter, r *http.Request) {
-	// find the long url
-	var longURL string
 
-	http.Redirect(w, r, longURL, http.StatusMovedPermanently)
+	// http.Redirect(w, r, shortURL, http.StatusMovedPermanently)
 }

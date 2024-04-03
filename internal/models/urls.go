@@ -23,10 +23,6 @@ func (m *URLModel) CheckIfExists(longURL string) (shortURL string, err error) {
 	stmt := `SELECT short_url FROM url_map WHERE long_url = ?`
 	row := m.DB.QueryRow(stmt, longURL)
 
-	if err != nil {
-		return "", err
-	}
-
 	var short_url string
 
 	err = row.Scan(&short_url)
@@ -70,4 +66,18 @@ func (m *URLModel) UpdateShortURL(insertID int64, shortURL string) error {
 	}
 
 	return nil
+}
+
+// get the long url
+func (m *URLModel) FindURL(shortURL string) (longURL string, err error) {
+	stmt := `SELECT long_url FROM url_map WHERE short_url=?`
+	row := m.DB.QueryRow(stmt, shortURL)
+
+	err = row.Scan(&longURL)
+
+	if err != nil {
+		return "", err
+	}
+
+	return longURL, nil
 }
