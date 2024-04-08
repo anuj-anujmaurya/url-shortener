@@ -1,2 +1,0 @@
-ERROR	2024/04/02 20:50:54 server.go:3195: http: superfluous response.WriteHeader call from main.(*application).shortenHandler (handlers.go:108)
-ERROR	2024/04/02 20:51:35 server.go:3195: http: superfluous response.WriteHeader call from main.(*application).shortenHandler (handlers.go:108)

@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"strings"
 	"text/template"
@@ -10,6 +11,8 @@ import (
 
 // home
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("this is home handler")
+
 	if r.URL.Path != "/" {
 		app.notFound(w)
 		return
@@ -111,6 +114,8 @@ func (app *application) shortenHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) redirectHandler(w http.ResponseWriter, r *http.Request) {
-
+	fmt.Println("this is redirect handler")
+	shortURL := r.URL.Path
+	fmt.Println(shortURL)
 	// http.Redirect(w, r, shortURL, http.StatusMovedPermanently)
 }
