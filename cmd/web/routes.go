@@ -15,7 +15,7 @@ func (app *application) routes() http.Handler {
 
 	router.Get("/", app.home)
 	router.Post("/create", app.shortenHandler)
-	router.Get("/{shortURL}", app.redirectHandler)
+	router.Get("/{shortURL:[0-9a-zA-Z]+}", app.redirectHandler)
 
 	return router
 }

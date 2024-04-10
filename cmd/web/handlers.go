@@ -7,6 +7,8 @@ import (
 	"strings"
 	"text/template"
 	"unicode/utf8"
+
+	"github.com/go-chi/chi/v5"
 )
 
 // home
@@ -42,18 +44,6 @@ type ShortURLRequest struct {
 	LongURL        string `json:"LongURL"`
 }
 
-const base62Digits = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
-func convertToBase62(number int64) string {
-	base62 := ""
-	for number > 0 {
-		remainder := number % 62
-		base62 = string(base62Digits[remainder]) + base62
-		number /= 62
-	}
-	return base62
-}
-
 // create url shortener
 func (app *application) shortenHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
@@ -76,11 +66,17 @@ func (app *application) shortenHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// now check if the url is valid
+	if !app.isValidUrl(requestBody.LongURL) {
+		app.handleFetchError(w, "Invalid URL", 1004, http.StatusUnprocessableEntity)
+		return
+	}
+
 	// check for existence in db
 	shortURL, err := app.URLModel.CheckIfExists(requestBody.LongURL)
 
 	if err != nil {
-		app.handleFetchError(w, "Something went wrong", 1004, http.StatusInternalServerError)
+		app.handleFetchError(w, "Something went wrong", 1005, http.StatusInternalServerError)
 	}
 
 	if shortURL != "" {
@@ -99,7 +95,7 @@ func (app *application) shortenHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// convert the id into base 62 encoded
-	shortURL = convertToBase62(id)
+	shortURL = app.convertToBase62(id)
 
 	// update the entry
 	err = app.URLModel.UpdateShortURL(id, shortURL)
@@ -114,8 +110,16 @@ func (app *application) shortenHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) redirectHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("this is redirect handler")
-	shortURL := r.URL.Path
-	fmt.Println(shortURL)
-	// http.Redirect(w, r, shortURL, http.StatusMovedPermanently)
+	shortURL := chi.URLParam(r, "shortURL")
+	longURL, err := app.URLModel.FindURL(shortURL)
+	if err != nil {
+		http.NotFound(w, r)
+		return
+	}
+
+	if !strings.HasPrefix(longURL, "http://") && !strings.HasPrefix(longURL, "https://") {
+		longURL = "http://" + longURL
+	}
+
+	http.Redirect(w, r, longURL, http.StatusMovedPermanently)
 }
