@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	if (submit_form) {
 		submit_form.addEventListener("click", function () {
 			let long_url = document.getElementById('url_input').value;
+			document.getElementById('urlHelp').innerText = '';
 
 			let data = { CreateShortURL: true, LongURL: long_url }
-			console.log(data);
 			fetch('/create', {
 				method: 'POST',
 				headers: {
@@ -14,18 +14,27 @@ document.addEventListener("DOMContentLoaded", function () {
 				},
 				body: JSON.stringify(data)
 			})
-				.then(response => {
-					if(response.error) {
-						// show the error
+				.then(async response => {
+					if (!response.ok) {
+						const errorData = await response.json();
+						console.log(errorData);
+						throw new Error(errorData.error);
 					}
-
-					if(response.success) {
+					return response.json();
+				})
+				.then(response => {
+					console.log(response);
+					if (response.success) {
+						document.getElementById('short_url').value = `http://localhost:8080/${response.short_url}`
 						// show the short_url in the box (also allow user to copy)
 					}
-					
-					response.json()
 				})
-				.then(data => console.log(data))
+				.catch(error => {
+					// make the color red
+					const urlHelpElement = document.getElementById('urlHelp');
+					urlHelpElement.innerText = error;
+					urlHelpElement.style.color = 'red';
+				})
 		});
 	}
 });
