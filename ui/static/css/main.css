@@ -286,3 +286,18 @@ footer {
 	color: #6A6C6F;
 	text-align: center;
 }
+.input-group-append>input{
+	border-right: 0;
+}
+.input-group-append>.input-group-append{
+margin-bottom: 0 !important;
+border-top: 0px !important;
+}
+
+.input-group-append>.input-group-append span{
+	border-left: 0 !important;
+	margin-left: 0 !important;
+	border-top: 0px !important;
+	border-bottom: 0px !important;
+	border-radius: 0px 3px 0px 3px !important;
+	}
