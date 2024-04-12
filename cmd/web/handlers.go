@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"strings"
 	"text/template"
@@ -13,8 +12,6 @@ import (
 
 // home
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("this is home handler")
-
 	if r.URL.Path != "/" {
 		app.notFound(w)
 		return
@@ -47,28 +44,30 @@ type ShortURLRequest struct {
 // create url shortener
 func (app *application) shortenHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
-		app.handleFetchError(w, "Method Not Allowed", 1000, http.StatusMethodNotAllowed)
+		app.handleFetchError(w, "method not allowed", 1000, http.StatusMethodNotAllowed)
 		return
 	}
 
 	var requestBody ShortURLRequest
 	err := json.NewDecoder(r.Body).Decode(&requestBody)
 	if err != nil {
-		app.handleFetchError(w, "Bad request/empty url", 1001, http.StatusBadRequest)
+		app.handleFetchError(w, "bad request/empty url", 1001, http.StatusBadRequest)
 		return
 	}
 
 	if strings.TrimSpace(requestBody.LongURL) == "" {
-		app.handleFetchError(w, "This field can't be empty", 1002, http.StatusUnprocessableEntity)
+		app.handleFetchError(w, "enter long url", 1002, http.StatusUnprocessableEntity)
 		return
-	} else if utf8.RuneCountInString(requestBody.LongURL) > 400 {
-		app.handleFetchError(w, "URL too long", 1003, http.StatusUnprocessableEntity)
+	}
+
+	if utf8.RuneCountInString(requestBody.LongURL) > 400 {
+		app.handleFetchError(w, "url too long", 1003, http.StatusUnprocessableEntity)
 		return
 	}
 
 	// now check if the url is valid
 	if !app.isValidUrl(requestBody.LongURL) {
-		app.handleFetchError(w, "Invalid URL", 1004, http.StatusUnprocessableEntity)
+		app.handleFetchError(w, "invalid url", 1004, http.StatusUnprocessableEntity)
 		return
 	}
 
@@ -76,13 +75,13 @@ func (app *application) shortenHandler(w http.ResponseWriter, r *http.Request) {
 	shortURL, err := app.URLModel.CheckIfExists(requestBody.LongURL)
 
 	if err != nil {
-		app.handleFetchError(w, "Something went wrong", 1005, http.StatusInternalServerError)
+		app.handleFetchError(w, "something went wrong", 1005, http.StatusInternalServerError)
 	}
 
 	if shortURL != "" {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(200)
-		json.NewEncoder(w).Encode(map[string]any{"success": true, "shortURL": shortURL})
+		json.NewEncoder(w).Encode(map[string]any{"success": true, "short_url": shortURL})
 		return
 	}
 
@@ -90,7 +89,7 @@ func (app *application) shortenHandler(w http.ResponseWriter, r *http.Request) {
 	id, err := app.URLModel.Insert(requestBody.LongURL)
 
 	if err != nil {
-		app.handleFetchError(w, "Something went wrong", 1005, http.StatusInternalServerError)
+		app.handleFetchError(w, "something went wrong", 1005, http.StatusInternalServerError)
 		return
 	}
 
@@ -100,7 +99,7 @@ func (app *application) shortenHandler(w http.ResponseWriter, r *http.Request) {
 	// update the entry
 	err = app.URLModel.UpdateShortURL(id, shortURL)
 	if err != nil {
-		app.handleFetchError(w, "Something went wrong", 1006, http.StatusInternalServerError)
+		app.handleFetchError(w, "something went wrong", 1006, http.StatusInternalServerError)
 	}
 
 	// return the short url
