@@ -95,7 +95,7 @@ func (app *application) shortenHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// convert the id into base 62 encoded
-	shortURL = app.convertToBase62(id)
+	shortURL = app.base62encode(id)
 
 	// update the entry
 	err = app.URLModel.UpdateShortURL(id, shortURL)

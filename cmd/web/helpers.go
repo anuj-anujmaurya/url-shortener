@@ -3,9 +3,11 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"math"
 	"net/http"
 	"regexp"
 	"runtime/debug"
+	"strings"
 )
 
 func (app *application) serverError(w http.ResponseWriter, err error) {
@@ -32,7 +34,7 @@ func (app *application) handleFetchError(w http.ResponseWriter, message string, 
 
 const base62Digits = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-func (app *application) convertToBase62(number int64) string {
+func (app *application) base62encode(number int64) string {
 	base62 := ""
 	for number > 0 {
 		remainder := number % 62
@@ -40,6 +42,16 @@ func (app *application) convertToBase62(number int64) string {
 		number /= 62
 	}
 	return base62
+}
+
+// decoding function
+func (app *application) base62decode(hash string) int64 {
+	var res int64
+	for i := len(hash) - 1; i >= 0; i-- {
+		charValue := int64(strings.Index(base62Digits, string(hash[i])))
+		res += charValue * int64(math.Pow(62, float64(len(hash)-1-i)))
+	}
+	return res
 }
 
 // function to validate the url

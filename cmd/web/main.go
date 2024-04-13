@@ -50,7 +50,7 @@ func main() {
 
 	// Create a DSN (Data Source Name) string
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true", username, password, dbHost, dbPort, dbName)
-	fmt.Println(dsn)
+
 	// Open a connection to the database
 	db, err := sql.Open("mysql", dsn)
 	if err != nil {
