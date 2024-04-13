@@ -76,6 +76,7 @@ func (app *application) shortenHandler(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		app.handleFetchError(w, "something went wrong", 1005, http.StatusInternalServerError)
+		return
 	}
 
 	if shortURL != "" {
@@ -89,7 +90,7 @@ func (app *application) shortenHandler(w http.ResponseWriter, r *http.Request) {
 	id, err := app.URLModel.Insert(requestBody.LongURL)
 
 	if err != nil {
-		app.handleFetchError(w, "something went wrong", 1005, http.StatusInternalServerError)
+		app.handleFetchError(w, "something went wrong", 1006, http.StatusInternalServerError)
 		return
 	}
 
@@ -99,7 +100,8 @@ func (app *application) shortenHandler(w http.ResponseWriter, r *http.Request) {
 	// update the entry
 	err = app.URLModel.UpdateShortURL(id, shortURL)
 	if err != nil {
-		app.handleFetchError(w, "something went wrong", 1006, http.StatusInternalServerError)
+		app.handleFetchError(w, "something went wrong", 1007, http.StatusInternalServerError)
+		return
 	}
 
 	// return the short url

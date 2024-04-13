@@ -28,11 +28,9 @@ document.addEventListener("DOMContentLoaded", function () {
 				.then(response => {
 					if (response.success) {
 						document.getElementById('short_url').value = `http://localhost:8080/${response.short_url}`
-						// show the short_url in the box (also allow user to copy)
 					}
 				})
 				.catch(error => {
-					// make the color red
 					showFlashMsg(error, 'alert-danger');
 				})
 		});

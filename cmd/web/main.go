@@ -9,6 +9,7 @@ import (
 	"url_shortener/internal/models"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/joho/godotenv"
 )
 
 // application struct to hold the app's dependencies for web app.
@@ -36,15 +37,20 @@ func main() {
 	infoLog := log.New(infoLogFile, "INFO\t", log.Ldate|log.Ltime)
 	errorLog := log.New(errorLogFile, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
 
-	username := "user"
-	password := ""
-	dbName := "url_shortener"
-	dbHost := "localhost"
-	dbPort := "3306"
+	err = godotenv.Load()
+	if err != nil {
+		errorLog.Fatal("Error loading .env file")
+	}
+
+	username := os.Getenv("DB_USER")
+	password := os.Getenv("DB_PASSWORD")
+	dbName := os.Getenv("DB_NAME")
+	dbHost := os.Getenv("DB_HOST")
+	dbPort := os.Getenv("DB_PORT")
 
 	// Create a DSN (Data Source Name) string
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true", username, password, dbHost, dbPort, dbName)
-
+	fmt.Println(dsn)
 	// Open a connection to the database
 	db, err := sql.Open("mysql", dsn)
 	if err != nil {

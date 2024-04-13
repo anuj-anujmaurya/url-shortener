@@ -20,7 +20,7 @@ type URLModel struct {
 
 // check if long url exist in db, return short
 func (m *URLModel) CheckIfExists(longURL string) (shortURL string, err error) {
-	stmt := `SELECT short_url FROM url_map WHERE long_url = ?`
+	stmt := "SELECT short_url FROM url_map WHERE long_url = ?"
 	row := m.DB.QueryRow(stmt, longURL)
 
 	var short_url string
@@ -32,7 +32,6 @@ func (m *URLModel) CheckIfExists(longURL string) (shortURL string, err error) {
 			return "", nil
 		}
 		return "", err
-
 	}
 
 	return short_url, nil
