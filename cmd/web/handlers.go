@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"strings"
 	"text/template"
@@ -123,4 +124,29 @@ func (app *application) redirectHandler(w http.ResponseWriter, r *http.Request) 
 	}
 
 	http.Redirect(w, r, longURL, http.StatusMovedPermanently)
+}
+
+// function to create custom url
+func (app *application) createCustomPage(w http.ResponseWriter, r *http.Request) {
+	files := []string{
+		"./ui/html/base.html",
+		"./ui/html/pages/custom.html",
+		"./ui/html/partials/nav.html",
+	}
+
+	ts, err := template.ParseFiles(files...)
+	if err != nil {
+		app.serverError(w, err)
+		return
+	}
+
+	err = ts.ExecuteTemplate(w, "base", nil)
+	if err != nil {
+		app.serverError(w, err)
+	}
+}
+
+// function that will handle post request to create custom short url
+func (app *application) createCustomPost(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("post request for creating custom url")
 }

@@ -1,0 +1,23 @@
+ERROR	2024/04/14 19:18:19 helpers.go:15: 2 open ./ui/html/pages/custom.html: no such file or directory
+goroutine 7 [running]:
+runtime/debug.Stack()
+	/usr/lib/go-1.18/src/runtime/debug/stack.go:24 +0x65
+main.(*application).serverError(0xc00000e1e0, {0x855800, 0xc000174460}, {0x853480?, 0xc000196840?})
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/helpers.go:14 +0x58
+main.(*application).createCustom(0x203000?, {0x855800?, 0xc000174460}, 0x8?)
+	/home/anujmaurya/Desktop/my_work/golang/url_shortener/cmd/web/handlers.go:138 +0x13e
+net/http.HandlerFunc.ServeHTTP(0x768ae0?, {0x855800?, 0xc000174460?}, 0xc00001e424?)
+	/usr/lib/go-1.18/src/net/http/server.go:2084 +0x2f
+github.com/go-chi/chi/v5.(*Mux).routeHTTP(0xc0000663c0, {0x855800, 0xc000174460}, 0xc00016ec00)
+	/home/anujmaurya/go/pkg/mod/github.com/go-chi/chi/v5@v5.0.12/mux.go:459 +0x236
+net/http.HandlerFunc.ServeHTTP(0x855a40?, {0x855800?, 0xc000174460?}, 0xa55d40?)
+	/usr/lib/go-1.18/src/net/http/server.go:2084 +0x2f
+github.com/go-chi/chi/v5.(*Mux).ServeHTTP(0xc0000663c0, {0x855800, 0xc000174460}, 0xc000204f00)
+	/home/anujmaurya/go/pkg/mod/github.com/go-chi/chi/v5@v5.0.12/mux.go:90 +0x456
+net/http.serverHandler.ServeHTTP({0xc00007b440?}, {0x855800, 0xc000174460}, 0xc000204f00)
+	/usr/lib/go-1.18/src/net/http/server.go:2916 +0x43b
+net/http.(*conn).serve(0xc00010d400, {0x855ae8, 0xc00007b350})
+	/usr/lib/go-1.18/src/net/http/server.go:1966 +0x5d7
+created by net/http.(*Server).Serve
+	/usr/lib/go-1.18/src/net/http/server.go:3071 +0x4db
+
