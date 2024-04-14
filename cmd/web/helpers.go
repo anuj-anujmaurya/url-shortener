@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"math"
 	"net/http"
-	"regexp"
+	"net/url"
 	"runtime/debug"
 	"strings"
 )
@@ -56,7 +56,9 @@ func (app *application) base62decode(hash string) int64 {
 
 // function to validate the url
 func (app *application) isValidUrl(inputURL string) bool {
-	pattern := `^(http(s)?://)?([\w-]+\.)+[\w-]+(/[\w- ;,./?%&=]*)?$`
-	regex := regexp.MustCompile(pattern)
-	return regex.MatchString(inputURL)
+	if !strings.HasPrefix(inputURL, "http://") && !strings.HasPrefix(inputURL, "https://") {
+		inputURL = "http://" + inputURL
+	}
+	u, err := url.Parse(inputURL)
+	return err == nil && u.Scheme != "" && u.Host != ""
 }

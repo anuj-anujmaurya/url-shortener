@@ -1049,3 +1049,34 @@ func TestBase62Encode(t *testing.T) {
 		}
 	}
 }
+
+// testing the valid url function
+var urlTestCases = []struct {
+	inputURL string
+	expected bool
+}{
+	{"http://example.com", true},
+	{"https://www.google.com", true},
+	{"ftp://ftp.example.com", true},
+	{"http://localhost:8080", true},
+	{"https://subdomain.example.com/path", true},
+	{"http://192.0.2.1", true},
+	{"https://[2001:db8:0:1]:8080", true},
+	{"http://user:password@example.com", true},
+	{"https://example.com/?q=go+testing", true},
+	{"", false},          // Empty string should be invalid
+	{"not a url", false}, // Random string should be invalid
+	{"www.example.com", true},
+	{"http://example .com", false},    // Spaces not allowed
+	{"http://example.com:abc", false}, // Invalid port
+}
+
+func TestIsValidUrl(t *testing.T) {
+	app := application{}
+	for _, test := range urlTestCases {
+		result := app.isValidUrl(test.inputURL)
+		if result != test.expected {
+			t.Errorf("isValidUrl(%s) returned %t, expected %t", test.inputURL, result, test.expected)
+		}
+	}
+}
