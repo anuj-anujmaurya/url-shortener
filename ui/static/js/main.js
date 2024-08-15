@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				})
 				.then(response => {
 					if (response.success) {
-						document.getElementById('short_url').value = `http://localhost:8080/${response.short_url}`
+						document.getElementById('short_url').value = `${window.location.origin}/${response.short_url}`
 					}
 				})
 				.catch(error => {

@@ -25,12 +25,14 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	defer infoLogFile.Close()
 
 	errorLogFile, err := os.OpenFile("./logs/error.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	defer errorLogFile.Close()
 
 	// Create loggers
